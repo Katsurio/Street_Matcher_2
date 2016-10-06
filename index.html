@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!--<script src="http://learning-fuze.github.io/memory_match/v0.1/script.js"></script>-->
+    <meta charset="UTF-8">
+    <title>Memory Match</title>
+    <script>
+        var first_card_clicked = null;
+        var second_card_clicked = null;
+        var total_possible_matches = 9;
+        var match_counter = 0;
+        function card_clicked() {
+            $(this).find(".back").hide();
+            if (first_card_clicked === null) {
+                console.log("1st card = null");
+                first_card_clicked = $(this);
+            } else {
+                console.log("else/1st card != null");
+                second_card_clicked = $(this);
+                if($(first_card_clicked).find('.front img').attr('src') == $(second_card_clicked).find('.front img').attr('src')) {
+                    console.log("we have a match");
+                    match_counter++;
+                    first_card_clicked = null;
+                    second_card_clicked = null;
+                        if(match_counter == 9) {
+                            $('.main-content').append($('<h1>').text("Victory!"));
+                        }
+                        return false;
+                } else {
+                    $('.card').unbind();
+                    console.log('not a match');
+                    function two_cards_mismatch_timeout() {
+                        first_card_clicked.find(".back").show();
+                        second_card_clicked.find(".back").show();
+                        first_card_clicked = null;
+                        second_card_clicked = null;
+                        $('.card').click(card_clicked);
+                        return false;
+                    }
+                    setTimeout(two_cards_mismatch_timeout, 2000);
+                }
+            }
+        }
+        function apply_click_handlers(){
+            $('.card').click(card_clicked);
+            }
+        $(document).ready(apply_click_handlers);
+    </script>
+</head>
+<body>
+    <div class="content-container">
+        <header class="header-container">
+            <img src="http://vignette3.wikia.nocookie.net/streetfighter/images/3/3c/Street_Fighter_II_Victory_-_logotipo.png/revision/latest?cb=20140329084443&path-prefix=es" class="game-logo">
+            <h1 class="game-title">Memory Match</h1>
+            <nav>
+                <ul>
+                    <li class="nav-li"><a href="">Settings</a></li>
+                    <li class="nav-li"><a href="">About</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="main-content">
+            <aside class="stats-container">
+                <div class="games-played">
+                    <p class="label">Games Played</p>
+                    <p class="value"></p>
+                </div>
+                <div class="attempts">
+                    <p class="label">Attempts</p>
+                    <p class="value"></p>
+                </div>
+                <div class="accuracy">
+                    <p class="label">Accuracy</p>
+                    <p class="value"></p>
+                </div>
+                <button class="reset">Reset</button>
+            </aside>
+            <div id="game-area" class="card-container">
+                <div class="card">
+                    <div class="front">
+                        <img class="bison" src="http://cdn.playbuzz.com/cdn/a21a1700-3528-4757-8ce8-fe7ecc2a2f4e/2912d4b8-89f6-461d-950e-b25d6f5a533a.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="bison" src="http://cdn.playbuzz.com/cdn/a21a1700-3528-4757-8ce8-fe7ecc2a2f4e/2912d4b8-89f6-461d-950e-b25d6f5a533a.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="chung-li" src="http://vignette3.wikia.nocookie.net/capcomdatabase/images/f/fd/SSFIVChunLi.png/revision/latest?cb=20091208045724">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="chung-li" src="http://vignette3.wikia.nocookie.net/capcomdatabase/images/f/fd/SSFIVChunLi.png/revision/latest?cb=20091208045724">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="akuma" src="http://www.orugari.fr/wp-content/uploads/2011/04/super-street-fighter-iv-evil-ryu-20110325_1301058138.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="akuma" src="http://www.orugari.fr/wp-content/uploads/2011/04/super-street-fighter-iv-evil-ryu-20110325_1301058138.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="ryu" src="http://vignette1.wikia.nocookie.net/streetfighterxtekken/images/5/55/Ryu_sfxt.jpg/revision/latest?cb=20120205233207">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="ryu" src="http://vignette1.wikia.nocookie.net/streetfighterxtekken/images/5/55/Ryu_sfxt.jpg/revision/latest?cb=20120205233207">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="ken" src="http://cdn.staticneo.com/w/streetfighter/thumb/c/ca/SF_Ken.jpg/350px-SF_Ken.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="ken" src="http://cdn.staticneo.com/w/streetfighter/thumb/c/ca/SF_Ken.jpg/350px-SF_Ken.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="cammy" src="https://obivalderobi.files.wordpress.com/2011/01/street-fighter-camomile-cammy-artgerm.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="cammy" src="https://obivalderobi.files.wordpress.com/2011/01/street-fighter-camomile-cammy-artgerm.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="blanka" src="http://www.writeups.org/wp-content/uploads/Blanka-Street-Fighters-alt.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="blanka" src="http://www.writeups.org/wp-content/uploads/Blanka-Street-Fighters-alt.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="dhalsim" src="http://vignette1.wikia.nocookie.net/streetfighter/images/f/fb/Sf4-dhalsim.jpg/revision/latest?cb=20080502175216">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="dhalsim" src="http://vignette1.wikia.nocookie.net/streetfighter/images/f/fb/Sf4-dhalsim.jpg/revision/latest?cb=20080502175216">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="guile" src="http://www.game-art-hq.com/wp-content/uploads/2011/10/Super-Street-Fighter-IV-Arcade-Edition-Game-Character-Official-Artwork-Render-Guile.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img class="guile" src="http://www.game-art-hq.com/wp-content/uploads/2011/10/Super-Street-Fighter-IV-Arcade-Edition-Game-Character-Official-Artwork-Render-Guile.jpg">
+                    </div>
+                    <div class="back">
+                        <img src="NEW-streetfighter2_card_back.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
