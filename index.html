@@ -3,51 +3,11 @@
 <head>
     <link type="text/css" rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <!--<script src="http://learning-fuze.github.io/memory_match/v0.1/script.js"></script>-->
+    <script type="text/javascript" src="memory-match.js"></script>
+    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"-->
+          <!--rel="stylesheet">-->
     <meta charset="UTF-8">
     <title>Memory Match</title>
-    <script>
-        var first_card_clicked = null;
-        var second_card_clicked = null;
-        var total_possible_matches = 9;
-        var match_counter = 0;
-        function card_clicked() {
-            $(this).find(".back").hide();
-            if (first_card_clicked === null) {
-                console.log("1st card = null");
-                first_card_clicked = $(this);
-            } else {
-                console.log("else/1st card != null");
-                second_card_clicked = $(this);
-                if($(first_card_clicked).find('.front img').attr('src') == $(second_card_clicked).find('.front img').attr('src')) {
-                    console.log("we have a match");
-                    match_counter++;
-                    first_card_clicked = null;
-                    second_card_clicked = null;
-                        if(match_counter == 9) {
-                            $('.main-content').append($('<h1>').text("Victory!"));
-                        }
-                        return false;
-                } else {
-                    $('.card').unbind();
-                    console.log('not a match');
-                    function two_cards_mismatch_timeout() {
-                        first_card_clicked.find(".back").show();
-                        second_card_clicked.find(".back").show();
-                        first_card_clicked = null;
-                        second_card_clicked = null;
-                        $('.card').click(card_clicked);
-                        return false;
-                    }
-                    setTimeout(two_cards_mismatch_timeout, 2000);
-                }
-            }
-        }
-        function apply_click_handlers(){
-            $('.card').click(card_clicked);
-            }
-        $(document).ready(apply_click_handlers);
-    </script>
 </head>
 <body>
     <div class="content-container">
