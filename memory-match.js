@@ -11,26 +11,28 @@ var accuracy = 0;
 var games_played = 0;
 
 function display_stats() {
-    accuracy = matches / attempts + '%';
+    accuracy = (matches / attempts) * 100;
     $('.games-played .value').text(games_played);
     $('.attempts .value').text(attempts);
-    $('.accuracy .value').text();
+    $('.accuracy .value').text(accuracy.toFixed()); // cut (+ '%') for looks
 }
 
 function reset_stats() {
     accuracy = 0;
     matches = 0;
     attempts = 0;
+    match_counter = 0;
     display_stats();
+}
+
+function reset_cards() {
     $('.victory-h1').remove();
     $(first_card_clicked).removeClass('clicked');
     $(second_card_clicked).removeClass('clicked');
     first_card_clicked = null;
     second_card_clicked = null;
-    $('.card').click(card_clicked).find('.back').show();
-
+    $('.card').removeClass('clicked').click(card_clicked);
 }
-
 function card_clicked() {
     if($(this).hasClass('clicked')) {
         return;
@@ -46,12 +48,13 @@ function card_clicked() {
         console.log(second_card_clicked);
         if($(first_card_clicked).find('.front img').attr('src') == $(second_card_clicked).find('.front img').attr('src')) {
             console.log("we have a match");
-            match_counter++;
-            matches++;
+            ++match_counter;
+            ++matches;
             ++attempts;
             console.log('attempts/match: ', attempts);
             first_card_clicked = null;
             second_card_clicked = null;
+            display_stats();
             if(match_counter === total_possible_matches) {
                 $('.main-content').append($('<h1>').addClass('victory-h1').text("Victory!"));
             }
@@ -68,17 +71,20 @@ function card_clicked() {
                 $('.card').click(card_clicked);
             }
             setTimeout(two_cards_mismatch_timeout, 2000);
+            display_stats();
         }
     }
     display_stats();
 }
 
 function apply_click_handlers(){
+    display_stats();
     $('.card').click(card_clicked);
     $('.reset').click(function() {
         games_played++;
         reset_stats();
         display_stats();
+        reset_cards();
         $('.card').find('.back').show();
     })
 }
