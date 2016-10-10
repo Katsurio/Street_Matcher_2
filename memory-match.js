@@ -26,7 +26,7 @@ function reset_stats() {
 }
 
 function reset_cards() {
-    $('.victory-h1').remove();
+    $('.winner').remove();
     $(first_card_clicked).removeClass('clicked');
     $(second_card_clicked).removeClass('clicked');
     first_card_clicked = null;
@@ -56,7 +56,7 @@ function card_clicked() {
             second_card_clicked = null;
             display_stats();
             if(match_counter === total_possible_matches) {
-                $('.main-content').append($('<h1>').addClass('victory-h1').text("Victory!"));
+                $('.main-content').append('<img class="winner" src="images/you-win.png">');
             }
             return false;
         } else {
