@@ -1,6 +1,13 @@
 /**
  * Created by Katsurio on 10/8/16.
  */
+
+/** @function - Function that
+ * @name
+ * @param {}  -
+ * @return {} - Returns
+ */
+
 var first_card_clicked = null;
 var second_card_clicked = null;
 var total_possible_matches = 9;
@@ -39,19 +46,13 @@ function card_clicked() {
     }
     $(this).find(".back").hide();
     if (first_card_clicked === null) {
-        console.log("1st card = null");
         first_card_clicked = $(this).addClass('clicked');
-        console.log(first_card_clicked);
     } else {
-        console.log("else/1st card != null");
         second_card_clicked = $(this).addClass('clicked');
-        console.log(second_card_clicked);
         if($(first_card_clicked).find('.front img').attr('src') == $(second_card_clicked).find('.front img').attr('src')) {
-            console.log("we have a match");
             ++match_counter;
             ++matches;
             ++attempts;
-            console.log('attempts/match: ', attempts);
             first_card_clicked = null;
             second_card_clicked = null;
             display_stats();
@@ -62,7 +63,6 @@ function card_clicked() {
         } else {
             $('.card').off();
             ++attempts;
-            console.log('attempts/not a match', attempts);
             function two_cards_mismatch_timeout() {
                 $(first_card_clicked).removeClass('clicked').find(".back").show();
                 $(second_card_clicked).removeClass('clicked').find(".back").show();
