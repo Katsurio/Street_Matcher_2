@@ -8,14 +8,14 @@
  * @return {} - Returns
  */
 
-var first_card_clicked = null;
-var second_card_clicked = null;
-var total_possible_matches = 9;
-var match_counter = 0;
-var matches= 0;
-var attempts = 0;
-var accuracy = 0;
-var games_played = 0;
+var first_card_clicked = null,
+    second_card_clicked = null,
+    total_possible_matches = 9,
+    match_counter = 0,
+    matches = 0,
+    attempts = 0,
+    accuracy = 0,
+    games_played = 0;
 
 function display_stats() {
     accuracy = (matches / attempts) * 100;
