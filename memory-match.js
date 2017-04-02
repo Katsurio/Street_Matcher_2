@@ -30,8 +30,6 @@ function displayStats() {
 
 /** @function - Resets the players stats upon "Reset" button click.
  * @name resetStats
- * @param {}  -
- * @return {} - Returns
  */
 function resetStats() {
     accuracy = 0;
@@ -41,6 +39,9 @@ function resetStats() {
     displayStats();
 }
 
+/** @function - Resets game cards to their original starting positions.
+ * @name resetCards
+ */
 function resetCards() {
     $('.winner').remove();
     $(_1stCardClicked).removeClass('clicked');
