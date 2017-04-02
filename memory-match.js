@@ -8,84 +8,93 @@
  * @return {} - Returns
  */
 
-var first_card_clicked = null,
-    second_card_clicked = null,
-    total_possible_matches = 9,
-    match_counter = 0,
+var _1stCardClicked = null,
+    _2ndCardClicked = null,
+    totalPossibleMatches = 9,
+    matchCounter = 0,
     matches = 0,
     attempts = 0,
     accuracy = 0,
-    games_played = 0;
+    gamesPlayed = 0;
 
-function display_stats() {
+
+/** @function - Calculates/displays players stats(games played, attempts, and accuracy)..
+ * @name displayStats
+ */
+function displayStats() {
     accuracy = (matches / attempts) * 100;
-    $('.games-played .value').text(games_played);
+    $('.games-played .value').text(gamesPlayed);
     $('.attempts .value').text(attempts);
     $('.accuracy .value').text(accuracy.toFixed()); // cut (+ '%') for looks
 }
 
-function reset_stats() {
+/** @function - Resets the players stats upon "Reset" button click.
+ * @name resetStats
+ * @param {}  -
+ * @return {} - Returns
+ */
+function resetStats() {
     accuracy = 0;
     matches = 0;
     attempts = 0;
-    match_counter = 0;
-    display_stats();
+    matchCounter = 0;
+    displayStats();
 }
 
-function reset_cards() {
+function resetCards() {
     $('.winner').remove();
-    $(first_card_clicked).removeClass('clicked');
-    $(second_card_clicked).removeClass('clicked');
-    first_card_clicked = null;
-    second_card_clicked = null;
-    $('.card').removeClass('clicked').click(card_clicked);
+    $(_1stCardClicked).removeClass('clicked');
+    $(_2ndCardClicked).removeClass('clicked');
+    _1stCardClicked = null;
+    _2ndCardClicked = null;
+    $('.card').removeClass('clicked').click(cardClicked);
 }
-function card_clicked() {
+function cardClicked() {
     if($(this).hasClass('clicked')) {
         return;
     }
     $(this).find(".back").hide();
-    if (first_card_clicked === null) {
-        first_card_clicked = $(this).addClass('clicked');
+    if (_1stCardClicked === null) {
+        _1stCardClicked = $(this).addClass('clicked');
     } else {
-        second_card_clicked = $(this).addClass('clicked');
-        if($(first_card_clicked).find('.front img').attr('src') == $(second_card_clicked).find('.front img').attr('src')) {
-            ++match_counter;
+        _2ndCardClicked = $(this).addClass('clicked');
+        if($(_1stCardClicked).find('.front img').attr('src') == $(_2ndCardClicked).find('.front img').attr('src')) {
+            ++matchCounter;
             ++matches;
             ++attempts;
-            first_card_clicked = null;
-            second_card_clicked = null;
-            display_stats();
-            if(match_counter === total_possible_matches) {
+            _1stCardClicked = null;
+            _2ndCardClicked = null;
+            displayStats();
+            if(matchCounter === totalPossibleMatches) {
                 $('.main-content').append('<img class="winner" src="images/you-win.png">');
             }
             return false;
         } else {
             $('.card').off();
             ++attempts;
-            function two_cards_mismatch_timeout() {
-                $(first_card_clicked).removeClass('clicked').find(".back").show();
-                $(second_card_clicked).removeClass('clicked').find(".back").show();
-                first_card_clicked = null;
-                second_card_clicked = null;
-                $('.card').click(card_clicked);
+            function _2CardsMismatchTimeout() {
+                $(_1stCardClicked).removeClass('clicked').find(".back").show();
+                $(_2ndCardClicked).removeClass('clicked').find(".back").show();
+                _1stCardClicked = null;
+                _2ndCardClicked = null;
+                $('.card').click(cardClicked);
             }
-            setTimeout(two_cards_mismatch_timeout, 2000);
-            display_stats();
+            setTimeout(_2CardsMismatchTimeout, 2000);
+            displayStats();
         }
     }
-    display_stats();
+    displayStats();
 }
 
-function apply_click_handlers(){
-    display_stats();
-    $('.card').click(card_clicked);
+function applyClickHandlers(){
+    displayStats();
+    $('.card').click(cardClicked);
     $('.reset').click(function() {
-        games_played++;
-        reset_stats();
-        display_stats();
-        reset_cards();
+        gamesPlayed++;
+        resetStats();
+        displayStats();
+        resetCards();
         $('.card').find('.back').show();
     })
 }
-$(document).ready(apply_click_handlers);
+$(document).ready(applyClickHandlers);
