@@ -50,6 +50,10 @@ function resetCards() {
     _2ndCardClicked = null;
     $('.card').removeClass('clicked').click(cardClicked);
 }
+
+/** @function - Function that checks whether the card clicked is the 1st or 2nd card clicked. If it's the 2nd card clicked, the function then checks whether or not there's a match (increment match counter) or a mismatch (mismatch timeout) and updates the player's stats accordingly.
+ * @name cardClicked
+ */
 function cardClicked() {
     if($(this).hasClass('clicked')) {
         return;
