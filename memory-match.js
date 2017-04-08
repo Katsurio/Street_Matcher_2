@@ -1,13 +1,6 @@
 /**
  * Created by Katsurio on 10/8/16.
  */
-
-/** @function - Function that
- * @name
- * @param {}  -
- * @return {} - Returns
- */
-
 var _1stCardClicked = null,
     _2ndCardClicked = null,
     totalPossibleMatches = 9,
@@ -33,17 +26,12 @@ function shuffleCards(cardFaceImgs)
         randomIndex = Math.floor(Math.random() * i);
         randomImg = cardFaceImgs.splice(randomIndex, 1);
 
-        $('.card-container').append(
-            $('<div>')).addClass('card').append(
-                $('<div><img src=' + randomImg + '></div>')).addClass('front');
-        // $('.card-container .card:last').append(
-        //     $('<div></div>')).addClass('back').append(
-        //         $('<img>')).attr('src', 'images/NEW-streetfighter2_card_back.jpg');
-        // i = cardFaceImgs.length;
+        $('.card-container').append($('<div class="card"></div>'));
+        $('.card:last').append($('<div class="front"></div>'), $('<div class="back"></div>'));
+        $('.front:last').append($('<img src=' + randomImg + '>'));
+        $('.back:last').append($('<img src="images/NEW-streetfighter2_card_back.jpg">'));
     }
 }
-
-// <img class="bison" src="images/bison.jpg">
 
 /** @function - Calculates/displays players stats(games played, attempts, and accuracy)..
  * @name displayStats
