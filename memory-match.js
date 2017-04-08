@@ -31,7 +31,7 @@ function shuffleCards(cardFaceImgs)
     for (i = cardFaceImgs.length; i >= 0; i--)
     {
         randomIndex = Math.floor(Math.random() * i);
-        randomImg = cardFaceImgs.unshift(randomIndex);
+        randomImg = cardFaceImgs.splice(randomIndex, 1);
 
         $('.card-container').append(
             '<div>').addClass('card').append(
@@ -40,6 +40,7 @@ function shuffleCards(cardFaceImgs)
         $('.card-container .card:last').append(
             '<div>').addClass('back').append(
                 '<img>').attr('src', 'images/NEW-streetfighter2_card_back.jpg');
+        i = cardFaceImgs.length;
     }
 }
 
@@ -136,6 +137,7 @@ function cardClicked()
 
 function applyClickHandlers()
 {
+    shuffleCards(frontOfCardImages);
     displayStats();
     $('.card').click(cardClicked);
     $('.reset').click(function()
