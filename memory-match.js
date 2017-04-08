@@ -34,13 +34,12 @@ function shuffleCards(cardFaceImgs)
         randomImg = cardFaceImgs.splice(randomIndex, 1);
 
         $('.card-container').append(
-            '<div>').addClass('card').append(
-                '<div>').addClass('front').append(
-                    '<img>').attr('src', randomImg);
-        $('.card-container .card:last').append(
-            '<div>').addClass('back').append(
-                '<img>').attr('src', 'images/NEW-streetfighter2_card_back.jpg');
-        i = cardFaceImgs.length;
+            $('<div>')).addClass('card').append(
+                $('<div><img src=' + randomImg + '></div>')).addClass('front');
+        // $('.card-container .card:last').append(
+        //     $('<div></div>')).addClass('back').append(
+        //         $('<img>')).attr('src', 'images/NEW-streetfighter2_card_back.jpg');
+        // i = cardFaceImgs.length;
     }
 }
 
