@@ -25,7 +25,7 @@ function shuffleCards(cardBackImg, cardFaceImgs)
     var randomIndex,
         randomImg,
         i,
-        newCardImgArr = cardFaceImgs;
+        newCardImgArr = cardFaceImgs.slice(0);
 
     for (i = cardFaceImgs.length; i > 0; i--)
     {
@@ -47,7 +47,14 @@ function displayStats()
     accuracy = (matches / attempts) * 100;
     $('.games-played .value').text(gamesPlayed);
     $('.attempts .value').text(attempts);
-    $('.accuracy .value').text(accuracy.toFixed()); // cut (+ '%') for looks
+    if (Number.isNaN(accuracy))
+    {
+        $('.accuracy .value').text("0");
+    }
+    else
+    {
+        $('.accuracy .value').text(accuracy.toFixed()); // cut (+ '%') for looks
+    }
 }
 
 /** @function - Resets the players stats upon "Reset" button click.
@@ -67,12 +74,17 @@ function resetStats()
  */
 function resetCards()
 {
+    $('.card').off();
     $('.winner').remove();
-    $(_1stCardClicked).removeClass('clicked');
-    $(_2ndCardClicked).removeClass('clicked');
     _1stCardClicked = null;
     _2ndCardClicked = null;
-    $('.card').removeClass('clicked').click(cardClicked);
+    $('.card-container').empty();
+    shuffleCards(backOCard, frontOCardImages);
+
+    setTimeout(function()
+    {
+        $('.card').click(cardClicked);
+    }, 2000);
 }
 
 /** @function - Function that checks whether the card clicked is the 1st or 2nd card clicked. If it's the 2nd card clicked, the function then checks whether or not there's a match (increment match counter) or a mismatch (mismatch timeout) and updates the player's stats accordingly.
@@ -80,6 +92,7 @@ function resetCards()
  */
 function cardClicked()
 {
+    console.warn("Clicked");
     if ($(this).hasClass('clicked'))
     {
         return;
@@ -139,8 +152,8 @@ function applyClickHandlers()
         resetStats();
         displayStats();
         resetCards();
-        $('.card-container').empty();
-        shuffleCards(backOCard, frontOCardImages);
+        // $('.card-container').empty();
+        // shuffleCards(backOCard, frontOCardImages);
     })
 }
 
