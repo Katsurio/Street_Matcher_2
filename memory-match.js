@@ -152,8 +152,6 @@ function applyClickHandlers()
         resetStats();
         displayStats();
         resetCards();
-        // $('.card-container').empty();
-        // shuffleCards(backOCard, frontOCardImages);
     })
 }
 
