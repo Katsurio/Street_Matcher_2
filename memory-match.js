@@ -10,11 +10,46 @@ var _1stCardClicked = null,
     accuracy = 0,
     gamesPlayed = 0,
     backOCard = "images/NEW-streetfighter2_card_back.jpg",
+    stageMusic = document.getElementById("stageAudio"),
+    audioCheck = true,
     frontOCardImages =
         [
             "images/bison.jpg", "images/bison.jpg", "images/chunli.jpg", "images/chunli.jpg", "images/vega.jpg", "images/vega.jpg", "images/ryu.jpg", "images/ryu.jpg", "images/ken.jpg", "images/ken.jpg", "images/guile.jpg", "images/guile.jpg", "images/blanka.jpg", "images/blanka.jpg", "images/dhalsim.jpg", "images/dhalsim.jpg", "images/sagat.jpg", "images/sagat.jpg"
-        ];
+        ],
+    audioTracks;
 
+function playAudio()
+{
+    stageMusic.play();
+    audioCheck = true;
+}
+function pauseAudio()
+{
+    stageMusic.pause();
+    audioCheck = false;
+}
+
+
+/** @function - Function that shuffles the cards' images.
+ * @name shuffleCards
+ * @param {String} cardBackImg - A strings that contains the path to the cards' back image.
+ * @param {String[]} cardFaceImgs - An array of strings that contain the paths to the card faces' images.
+ */
+function playPauseAudio()
+{
+    console.warn('playPauseAudio function invoked');
+    if (stageMusic)
+    {
+        $('#playPause').text('Pause').click(pauseAudio());
+
+    } else
+    {
+        $('#playPause').text('Play').click(playAudio());
+    }
+        // document.getElementById("myAudio");
+    // x.play();
+
+}
 /** @function - Function that shuffles the cards' images.
  * @name shuffleCards
  * @param {String} cardBackImg - A strings that contains the path to the cards' back image.
@@ -143,8 +178,12 @@ function cardClicked()
 
 function applyClickHandlers()
 {
+    var stageTrack = new Audio('audio/fights-cats-little-cats.wav');
+    stageTrack.play();
+    // stageTrack = "audio/09.-ryu-stage.mp3";
     shuffleCards(backOCard, frontOCardImages);
     displayStats();
+    // playAudio();
     $('.card').click(cardClicked);
     $('.reset').click(function()
     {
@@ -154,7 +193,8 @@ function applyClickHandlers()
         resetCards();
         // $('.card-container').empty();
         // shuffleCards(backOCard, frontOCardImages);
-    })
+    });
+    $('#playPause').click(playPauseAudio);
 }
 
 $(document).ready(applyClickHandlers);
