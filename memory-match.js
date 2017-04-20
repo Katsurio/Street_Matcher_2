@@ -11,12 +11,13 @@ var _1stCardClicked = null,
     gamesPlayed = 0,
     backOCard = "images/NEW-streetfighter2_card_back.jpg",
     stageMusic = document.getElementById("stageAudio"),
+    stageTrack = new Audio('audio/stage-e-honda.mp3'),
     audioCheck = true,
     frontOCardImages =
         [
             "images/bison.jpg", "images/bison.jpg", "images/chunli.jpg", "images/chunli.jpg", "images/vega.jpg", "images/vega.jpg", "images/ryu.jpg", "images/ryu.jpg", "images/ken.jpg", "images/ken.jpg", "images/guile.jpg", "images/guile.jpg", "images/blanka.jpg", "images/blanka.jpg", "images/dhalsim.jpg", "images/dhalsim.jpg", "images/sagat.jpg", "images/sagat.jpg"
         ],
-    audioTracks;
+    audioTracks = [];
 
 function playAudio()
 {
@@ -178,9 +179,8 @@ function cardClicked()
 
 function applyClickHandlers()
 {
-    var stageTrack = new Audio('audio/fights-cats-little-cats.wav');
     stageTrack.play();
-    // stageTrack = "audio/09.-ryu-stage.mp3";
+    // stageTrack = "audio/stage-ryu.mp3";
     shuffleCards(backOCard, frontOCardImages);
     displayStats();
     // playAudio();
