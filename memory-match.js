@@ -17,7 +17,9 @@ var _1stCardClicked = null,
         [
             "images/bison.jpg", "images/bison.jpg", "images/chunli.jpg", "images/chunli.jpg", "images/vega.jpg", "images/vega.jpg", "images/ryu.jpg", "images/ryu.jpg", "images/ken.jpg", "images/ken.jpg", "images/guile.jpg", "images/guile.jpg", "images/blanka.jpg", "images/blanka.jpg", "images/dhalsim.jpg", "images/dhalsim.jpg", "images/sagat.jpg", "images/sagat.jpg"
         ],
-    audioTracks = [];
+    audioTracks =
+        ['audio/stage-balrog.mp3', 'audio/stage-blanka.mp3', 'audio/stage-chun-li.mp3', 'audio/stage-dhalsim.mp3', 'audio/stage-e-honda.mp3', 'audio/stage-guile.mp3', 'audio/stage-ken.mp3', 'audio/stage-m-bision.mp3', 'audio/stage-ryu.mp3', 'audio/stage-sagat.mp3', 'audio/stage-vega.mp3', 'audio/stage-zangief.mp3'
+        ];
 
 function playAudio()
 {
