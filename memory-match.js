@@ -12,6 +12,8 @@ var _1stCardClicked = null,
     backOCard = "images/NEW-streetfighter2_card_back.jpg",
     stageMusic = document.getElementById("stageAudio"),
     stageTrack = new Audio('audio/stage-e-honda.mp3'),
+    announcerYou = new Audio('audio/announcer-you.wav'),
+    announcerWin = new Audio('audio/announcer-win.wav'),
     audioCheck = true,
     frontOCardImages =
         [
@@ -142,6 +144,7 @@ function cardClicked()
             if (matchCounter === totalPossibleMatches)
             {
                 $('.main-content').append('<img class="winner" src="images/you-win.png">');
+
             }
             return false;
         }
@@ -163,6 +166,41 @@ function cardClicked()
     }
     displayStats();
 }
+
+var announcerSpeak = function say (speech1, speech2, speech3)
+{
+    var announcerSay1 = new Audio('audio/announcer-' + speech1 + '.wav'),
+        announcerSay2 = new Audio('audio/announcer-' + speech2 + '.wav'),
+        announcerSay3 = new Audio('audio/announcer-' + speech3 + '.wav');
+    announcerSay1.play();
+    say(you)
+}
+
+
+function announcer (speech1, speech2)
+{
+    if (audioCheck)
+    {
+        stageTrack.pause();
+        $('#playPause').text('Play');
+        audioCheck = false;
+        // announcerYou.play();
+        announcerYou.play().addEventListener('ended', function()
+        {
+            announcerWin.play();
+        });
+    }
+    else
+    {
+        // announcerYou.play();
+        announcerYou.play().addEventListener('ended', function()
+        {
+            announcerWin.play();
+        });
+    }
+}
+
+
 
 function applyClickHandlers()
 {
