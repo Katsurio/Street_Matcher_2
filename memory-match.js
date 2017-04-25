@@ -3,7 +3,7 @@
  */
 var _1stCardClicked = null,
     _2ndCardClicked = null,
-    totalPossibleMatches = 9,
+    totalPossibleMatches = 1, //TODO: CHANGE THIS BACK TO: 9
     matchCounter = 0,
     matches = 0,
     attempts = 0,
@@ -52,7 +52,7 @@ function shuffleCards(cardBackImg, cardFaceImgs)
         i,
         newCardImgArr = cardFaceImgs.slice(0);
 
-    for (i = cardFaceImgs.length; i > 0; i--)
+    for (i = 2; i > 0; i--) //TODO: CHANGE THIS BACK TO: i = cardFaceImgs.length
     {
         randomIndex = Math.floor(Math.random() * i);
         randomImg = newCardImgArr.splice(randomIndex, 1);
@@ -144,7 +144,10 @@ function cardClicked()
             if (matchCounter === totalPossibleMatches)
             {
                 $('.main-content').append('<img class="winner" src="images/you-win.png">');
-
+                // announcerSpeak("you", function() {
+                //     announcerSpeak("win");
+                // });
+                announcerSpeak("you", "win", announcerSpeak);
             }
             return false;
         }
@@ -167,38 +170,39 @@ function cardClicked()
     displayStats();
 }
 
-var announcerSpeak = function say (speech1, speech2, speech3)
+function announcerSpeak (speech1, speech2)
 {
-    var announcerSay1 = new Audio('audio/announcer-' + speech1 + '.wav'),
-        announcerSay2 = new Audio('audio/announcer-' + speech2 + '.wav'),
-        announcerSay3 = new Audio('audio/announcer-' + speech3 + '.wav');
-    announcerSay1.play();
-    say(you)
+    var announcerSay = new Audio('audio/announcer-' + speech1 + '.wav');
+    var announcerSayNext = new Audio('audio/announcer-' + speech2 + '.wav');
+    announcerSay.play();
+    setTimeout(function()
+    {
+        announcerSayNext.play();
+    }, 500);
 }
 
-
-function announcer (speech1, speech2)
-{
-    if (audioCheck)
-    {
-        stageTrack.pause();
-        $('#playPause').text('Play');
-        audioCheck = false;
-        // announcerYou.play();
-        announcerYou.play().addEventListener('ended', function()
-        {
-            announcerWin.play();
-        });
-    }
-    else
-    {
-        // announcerYou.play();
-        announcerYou.play().addEventListener('ended', function()
-        {
-            announcerWin.play();
-        });
-    }
-}
+// function announcer (speech1, speech2)
+// {
+//     if (audioCheck)
+//     {
+//         stageTrack.pause();
+//         $('#playPause').text('Play');
+//         audioCheck = false;
+//         // announcerYou.play();
+//         announcerYou.play().addEventListener('ended', function()
+//         {
+//             announcerWin.play();
+//         });
+//     }
+//     else
+//     {
+//         // announcerYou.play();
+//         announcerYou.play().addEventListener('ended', function()
+//         {
+//             announcerWin.play();
+//         });
+//     }
+// }
 
 
 
