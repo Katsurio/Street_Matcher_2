@@ -160,7 +160,24 @@ footer {
     width: 150px;
     height:45px;
 }
+#playPause {
+    background-color: rebeccapurple;
+    color: lightslategrey;
+    height: 100%;
+    width: auto;
+}
 
+#playPause.playAudioClass {
+    background: url("images/audio-play-contrastedColors.png") no-repeat center top;
+    background-size: 100% 100%;
+}
+#playPause.pauseAudioClass {
+    background: url("images/audio-pause-contrastedColors.png") no-repeat center top;
+    background-size: 100% 100%;
+}
+.audio-controls {
+    height: 100%;
+}
 /******** ABOUT PAGE *******/
 .become-one-with-ryu {
     height: 70%;

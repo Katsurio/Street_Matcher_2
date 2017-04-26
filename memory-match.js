@@ -29,13 +29,13 @@ function playAudio ()
     if (audioCheck)
     {
         stageTrack.pause();
-        $('#playPause').text('Play');
+        $('#playPause').toggleClass('playAudioClass pauseAudioClass');
         audioCheck = false;
     }
     else
     {
         stageTrack.play();
-        $('#playPause').text('Pause');
+        $('#playPause').toggleClass('pauseAudioClass playAudioClass');
         audioCheck = true;
     }
 }
@@ -57,10 +57,14 @@ function shuffleCards(cardBackImg, cardFaceImgs)
         randomIndex = Math.floor(Math.random() * i);
         randomImg = newCardImgArr.splice(randomIndex, 1);
 
-        $('.card-container').append($('<div class="card"></div>'));
-        $('.card:last').append($('<div class="front"></div>'), $('<div class="back"></div>'));
-        $('.front:last').append($('<img src=' + randomImg + '>'));
-        $('.back:last').append($('<img src=' + cardBackImg + '>'));
+        $('.card-container').append(
+            $('<div class="card"></div>'));
+        $('.card:last').append(
+            $('<div class="front"></div>'), $('<div class="back"></div>'));
+        $('.front:last').append(
+            $('<img src=' + randomImg + '>'));
+        $('.back:last').append(
+            $('<img src=' + cardBackImg + '>'));
     }
 }
 
@@ -105,11 +109,10 @@ function resetCards()
     _2ndCardClicked = null;
     $('.card-container').empty();
     shuffleCards(backOCard, frontOCardImages);
-
     setTimeout(function()
     {
         $('.card').click(cardClicked);
-    }, 2000);
+    }, 1000); //Original val=2000 but might be too long
 }
 
 /** @function - Function that checks whether the card clicked is the 1st or 2nd card clicked. If it's the 2nd card clicked, the function then checks whether or not there's a match (increment match counter) or a mismatch (mismatch timeout) and updates the player's stats accordingly.
@@ -144,10 +147,7 @@ function cardClicked()
             if (matchCounter === totalPossibleMatches)
             {
                 $('.main-content').append('<img class="winner" src="images/you-win.png">');
-                // announcerSpeak("you", function() {
-                //     announcerSpeak("win");
-                // });
-                announcerSpeak("you", "win", announcerSpeak);
+                announcerSpeak("announcer-you.wav", "announcer-win.wav", announcerSpeak());
             }
             return false;
         }
@@ -163,53 +163,28 @@ function cardClicked()
                 _2ndCardClicked = null;
                 $('.card').click(cardClicked);
             }
-            setTimeout(_2CardsMismatchTimeout, 2000);
             displayStats();
+            setTimeout(_2CardsMismatchTimeout, 1000); //Original val=2000
         }
     }
     displayStats();
 }
 
-function announcerSpeak (speech1, speech2)
+function announcerSpeak (speech1, speech2, callback)
 {
-    var announcerSay = new Audio('audio/announcer-' + speech1 + '.wav');
-    var announcerSayNext = new Audio('audio/announcer-' + speech2 + '.wav');
+    var announcerSay = new Audio("audio/" + speech1);
+    var announcerSayNext = new Audio("audio/" + speech2);
     announcerSay.play();
     setTimeout(function()
     {
         announcerSayNext.play();
     }, 500);
+    setTimeout(callback(), 1500);
 }
-
-// function announcer (speech1, speech2)
-// {
-//     if (audioCheck)
-//     {
-//         stageTrack.pause();
-//         $('#playPause').text('Play');
-//         audioCheck = false;
-//         // announcerYou.play();
-//         announcerYou.play().addEventListener('ended', function()
-//         {
-//             announcerWin.play();
-//         });
-//     }
-//     else
-//     {
-//         // announcerYou.play();
-//         announcerYou.play().addEventListener('ended', function()
-//         {
-//             announcerWin.play();
-//         });
-//     }
-// }
-
-
 
 function applyClickHandlers()
 {
     stageTrack.play();
-    $('#playPause').text('Pause');
     shuffleCards(backOCard, frontOCardImages);
     displayStats();
     $('.card').click(cardClicked);
@@ -219,8 +194,6 @@ function applyClickHandlers()
         resetStats();
         displayStats();
         resetCards();
-        // $('.card-container').empty();
-        // shuffleCards(backOCard, frontOCardImages);
     });
     $('#playPause').click(playAudio);
 }
