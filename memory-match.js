@@ -146,10 +146,20 @@ function cardClicked()
 
             if (matchCounter === totalPossibleMatches)
             {
+                stageTrack.pause();
+                stageTrack.currentTime = 0;
+                $('#playPause').toggleClass('playAudioClass pauseAudioClass');
+                audioCheck = false;
                 $('.main-content').append('<img class="winner" src="images/you-win.png">');
-                announcerSpeak("announcer-you.wav", "announcer-win.wav", announcerSpeak());
+                announcerSpeak("announcer-you.wav", "announcer-win.wav", function ()
+                {
+                    fighterSpeak("fight-voice-hahahaha-girl.wav", "fight-voice-victory-yatta.wav");
+                })
             }
+            else
+            {
             return false;
+            }
         }
         else
         {
@@ -170,16 +180,37 @@ function cardClicked()
     displayStats();
 }
 
+function fighterSpeak (say1, say2)
+{
+    var fighterSay = new Audio("audio/" + say1),
+        fighterSayNext = new Audio("audio/" + say2);
+    fighterSay.play();
+    setTimeout(function()
+    {
+        fighterSayNext.play();
+    }, 1200);
+}
+
 function announcerSpeak (speech1, speech2, callback)
 {
-    var announcerSay = new Audio("audio/" + speech1);
-    var announcerSayNext = new Audio("audio/" + speech2);
+    var announcerSay = new Audio("audio/" + speech1),
+        announcerSayNext = new Audio("audio/" + speech2);
     announcerSay.play();
     setTimeout(function()
     {
         announcerSayNext.play();
     }, 500);
-    setTimeout(callback(), 1500);
+    if (callback !== undefined)
+    {
+        setTimeout(function()
+        {
+            callback();
+        }, 500);
+    } else
+        {
+
+        }
+
 }
 
 function applyClickHandlers()
@@ -194,6 +225,10 @@ function applyClickHandlers()
         resetStats();
         displayStats();
         resetCards();
+        stageTrack.play();
+        $('#playPause').toggleClass('pauseAudioClass playAudioClass');
+        audioCheck = true;
+
     });
     $('#playPause').click(playAudio);
 }
