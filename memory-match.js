@@ -8,7 +8,7 @@ var _1stCardClicked = null,
     matches = 0,
     attempts = 0,
     accuracy = 0,
-    gamesPlayed = 0,
+    gamesPlayed = 1,
     backOCard = "images/NEW-streetfighter2_card_back.jpg",
     stageMusic = document.getElementById("stageAudio"),
     stageTrack = new Audio('audio/stage-e-honda.mp3'),
@@ -153,7 +153,7 @@ function cardClicked()
                 $('.main-content').append('<img class="winner" src="images/you-win.png">');
                 announcerSpeak("announcer-you.wav", "announcer-win.wav", function ()
                 {
-                    fighterSpeak("fight-voice-hahahaha-girl.wav", "fight-voice-victory-yatta.wav");
+                    fighterSpeak("fight-voice-hahahaha-girl.wav", "fight-voice-victory-yatta.wav", 1200);
                 })
             }
             else
@@ -180,15 +180,25 @@ function cardClicked()
     displayStats();
 }
 
-function fighterSpeak (say1, say2)
+function fighterSpeak (say1, say2, timeBetweenWords)
 {
-    var fighterSay = new Audio("audio/" + say1),
-        fighterSayNext = new Audio("audio/" + say2);
-    fighterSay.play();
-    setTimeout(function()
+    if (say2 === undefined && timeBetweenWords === undefined)
     {
-        fighterSayNext.play();
-    }, 1200);
+        var fighterSay = new Audio("audio/" + say1),
+            fighterSayNext = 0,
+            timeBetweenWords = 0;
+        fighterSay.play();
+    }
+    else
+    {
+        var fighterSay = new Audio("audio/" + say1),
+            fighterSayNext = new Audio("audio/" + say2);
+        fighterSay.play();
+        setTimeout(function()
+        {
+            fighterSayNext.play();
+        }, timeBetweenWords);
+    }
 }
 
 function announcerSpeak (speech1, speech2, callback)
@@ -216,6 +226,16 @@ function announcerSpeak (speech1, speech2, callback)
 function applyClickHandlers()
 {
     stageTrack.play();
+
+    // announcerSpeak("announcer-you.wav", "announcer-win.wav", function ()
+    // {
+    //     fighterSpeak("fight-voice-hahahaha-girl.wav", "fight-voice-victory-yatta.wav", 1200);
+    // });
+
+    fighterSpeak("announcer-round.wav", "announcer-" + gamesPlayed + ".wav", 800);
+    setTimeout(function() {
+        fighterSpeak("announcer-fight.wav");
+    }, 1500);
     shuffleCards(backOCard, frontOCardImages);
     displayStats();
     $('.card').click(cardClicked);
@@ -228,7 +248,10 @@ function applyClickHandlers()
         stageTrack.play();
         $('#playPause').toggleClass('pauseAudioClass playAudioClass');
         audioCheck = true;
-
+        fighterSpeak("announcer-round.wav", "announcer-" + gamesPlayed + ".wav", 800);
+        setTimeout(function() {
+            fighterSpeak("announcer-fight.wav");
+        }, 1500);
     });
     $('#playPause').click(playAudio);
 }
