@@ -226,12 +226,6 @@ function announcerSpeak (speech1, speech2, callback)
 function applyClickHandlers()
 {
     stageTrack.play();
-
-    // announcerSpeak("announcer-you.wav", "announcer-win.wav", function ()
-    // {
-    //     fighterSpeak("fight-voice-hahahaha-girl.wav", "fight-voice-victory-yatta.wav", 1200);
-    // });
-
     fighterSpeak("announcer-round.wav", "announcer-" + gamesPlayed + ".wav", 800);
     setTimeout(function() {
         fighterSpeak("announcer-fight.wav");
