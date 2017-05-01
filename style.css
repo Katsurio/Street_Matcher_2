@@ -141,19 +141,38 @@ footer {
     margin: auto;
 }
 #ken {
-    right: 15%;
+    right: 25%;
 }
 #ken, #ryu {
-    top: 25%;
-    height: 75%;
+    height: 100%;
 }
 
 #ken img, #ryu img {
-    height: 80%;
+    height: 60%;
+    top: 30%;
+    position: absolute;
 }
 #ryu {
     left: 18%;
 }
+
+/* COMPARED TO THE ABOVE FEW LINES OF CODE*/
+/*#ken {*/
+    /*right: 15%;*/
+/*}*/
+/*#ken, #ryu {*/
+    /*top: 25%;*/
+    /*height: 75%;*/
+/*}*/
+
+/*#ken img, #ryu img {*/
+    /*height: 80%;*/
+/*}*/
+/*#ryu {*/
+    /*left: 18%;*/
+/*}*/
+
+
 .reset {
     background-color: rebeccapurple;
     color: lightslategrey;
