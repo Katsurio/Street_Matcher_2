@@ -130,29 +130,29 @@ footer {
     z-index: 1;
 }
 .fighter-divs {
-    position: relative;
+    position: absolute;
+    top: 0;
     height: 100%;
     width: 100%;
 }
 .fighter-divs div {
     display: inline-block;
     position: absolute;
-    height: 80%;
     margin: auto;
 }
 #ken {
-    right: 5%;
-    bottom:0;
+    right: 15%;
 }
-#ken img {
-    height:80%;
+#ken, #ryu {
+    top: 25%;
+    height: 75%;
+}
+
+#ken img, #ryu img {
+    height: 80%;
 }
 #ryu {
-    left: 5%;
-    bottom: 0;
-}
-#ryu img {
-    height:80%;
+    left: 18%;
 }
 .reset {
     background-color: rebeccapurple;
