@@ -1,5 +1,5 @@
 body {
-    background: url("images/ryu_background.jpg") no-repeat center top;
+    background: url("images/stages/ryu_background.jpg") no-repeat center top;
     background-size: 100% 100%;
 }
 .content-container {
@@ -187,11 +187,11 @@ footer {
 }
 
 #playPause.playAudioClass {
-    background: url("images/audio-play-contrastedColors.png") no-repeat center top;
+    background: url("images/environment/audio-play-contrastedColors.png") no-repeat center top;
     background-size: 100% 100%;
 }
 #playPause.pauseAudioClass {
-    background: url("images/audio-pause-contrastedColors.png") no-repeat center top;
+    background: url("images/environment/audio-pause-contrastedColors.png") no-repeat center top;
     background-size: 100% 100%;
 }
 .audio-controls {
@@ -238,6 +238,6 @@ footer {
     right: 0;
     margin: 4% 0;
 }#background-img {
-     background: url("images/dhalsim-background.jpg") no-repeat center top;
+     background: url("images/stages/dhalsim-background.jpg") no-repeat center top;
      background-size: 100% 100%;
  }
