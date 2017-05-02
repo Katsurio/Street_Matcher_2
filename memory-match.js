@@ -146,15 +146,21 @@ function cardClicked()
 
             if (matchCounter === totalPossibleMatches)
             {
-                stageTrack.pause();
-                stageTrack.currentTime = 0;
-                $('#playPause').toggleClass('playAudioClass pauseAudioClass');
-                audioCheck = false;
-                $('.main-content').append('<img class="winner" src="images/environment/you-win.png">');
-                announcerSpeak("announcer-you.wav", "announcer-win.wav", function ()
+                if (audioCheck)
                 {
-                    fighterSpeak("fight-voice-hahahaha-girl.wav", "fight-voice-victory-yatta.wav", 1200);
-                })
+                    stageTrack.pause();
+                    stageTrack.currentTime = 0;
+                    $('.main-content').append('<img class="winner" src="images/environment/you-win.png">');
+                    announcerSpeak("announcer-you.wav", "announcer-win.wav", function ()
+                    {
+                        fighterSpeak("fight-voice-hahahaha-girl.wav", "fight-voice-victory-yatta.wav", 1200);
+                    })
+                }
+                else
+                {
+                    stageTrack.currentTime = 0;
+                    $('.main-content').append('<img class="winner" src="images/environment/you-win.png">');
+                }
             }
             else
             {
@@ -228,25 +234,36 @@ function applyClickHandlers()
 {
     stageTrack.play();
     fighterSpeak("announcer-round.wav", "announcer-" + gamesPlayed + ".wav", 800);
-    setTimeout(function() {
+
+    setTimeout(function()
+    {
         fighterSpeak("announcer-fight.wav");
     }, 1500);
+
     shuffleCards(backOCard, frontOCardImages);
     displayStats();
     $('.card').click(cardClicked);
     $('.reset').click(function()
     {
-        gamesPlayed++;
-        resetStats();
-        displayStats();
-        resetCards();
-        stageTrack.play();
-        $('#playPause').toggleClass('pauseAudioClass playAudioClass');
-        audioCheck = true;
-        fighterSpeak("announcer-round.wav", "announcer-" + gamesPlayed + ".wav", 800);
-        setTimeout(function() {
-            fighterSpeak("announcer-fight.wav");
-        }, 1500);
+        if (audioCheck) {
+            gamesPlayed++;
+            resetStats();
+            displayStats();
+            resetCards();
+            stageTrack.play();
+            audioCheck = true;
+            fighterSpeak("announcer-round.wav", "announcer-" + gamesPlayed + ".wav", 800);
+            setTimeout(function() {
+                fighterSpeak("announcer-fight.wav");
+            }, 1500);
+        }
+        else
+        {
+            gamesPlayed++;
+            resetStats();
+            displayStats();
+            resetCards();
+        }
     });
     $('#playPause').click(playAudio);
 }
