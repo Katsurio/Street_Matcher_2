@@ -9,7 +9,7 @@ var _1stCardClicked = null,
     attempts = 0,
     accuracy = 0,
     gamesPlayed = 1,
-    backOCard = "images/NEW-streetfighter2_card_back.jpg",
+    backOCard = "images/cards/NEW-streetfighter2_card_back.jpg",
     stageMusic = document.getElementById("stageAudio"),
     stageTrack = new Audio('audio/stage-e-honda.mp3'),
     announcerYou = new Audio('audio/announcer-you.wav'),
@@ -17,7 +17,7 @@ var _1stCardClicked = null,
     audioCheck = true,
     frontOCardImages =
         [
-            "images/bison.jpg", "images/bison.jpg", "images/chunli.jpg", "images/chunli.jpg", "images/vega.jpg", "images/vega.jpg", "images/ryu.jpg", "images/ryu.jpg", "images/ken.jpg", "images/ken.jpg", "images/guile.jpg", "images/guile.jpg", "images/blanka.jpg", "images/blanka.jpg", "images/dhalsim.jpg", "images/dhalsim.jpg", "images/sagat.jpg", "images/sagat.jpg"
+            "images/cards/bison.jpg", "images/cards/bison.jpg", "images/cards/chunli.jpg", "images/cards/chunli.jpg", "images/cards/vega.jpg", "images/cards/vega.jpg", "images/cards/ryu.jpg", "images/cards/ryu.jpg", "images/cards/ken.jpg", "images/cards/ken.jpg", "images/cards/guile.jpg", "images/cards/guile.jpg", "images/cards/blanka.jpg", "images/cards/blanka.jpg", "images/cards/dhalsim.jpg", "images/cards/dhalsim.jpg", "images/cards/sagat.jpg", "images/cards/sagat.jpg"
         ],
     audioTracks =
         ['audio/stage-balrog.mp3', 'audio/stage-blanka.mp3', 'audio/stage-chun-li.mp3', 'audio/stage-dhalsim.mp3', 'audio/stage-e-honda.mp3', 'audio/stage-guile.mp3', 'audio/stage-ken.mp3', 'audio/stage-m-bision.mp3', 'audio/stage-ryu.mp3', 'audio/stage-sagat.mp3', 'audio/stage-vega.mp3', 'audio/stage-zangief.mp3'
@@ -150,7 +150,7 @@ function cardClicked()
                 stageTrack.currentTime = 0;
                 $('#playPause').toggleClass('playAudioClass pauseAudioClass');
                 audioCheck = false;
-                $('.main-content').append('<img class="winner" src="images/you-win.png">');
+                $('.main-content').append('<img class="winner" src="images/environment/you-win.png">');
                 announcerSpeak("announcer-you.wav", "announcer-win.wav", function ()
                 {
                     fighterSpeak("fight-voice-hahahaha-girl.wav", "fight-voice-victory-yatta.wav", 1200);
