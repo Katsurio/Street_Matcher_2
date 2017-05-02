@@ -216,10 +216,11 @@ function announcerSpeak (speech1, speech2, callback)
         {
             callback();
         }, 500);
-    } else
-        {
-
-        }
+    }
+    else
+    {
+        return false;
+    }
 
 }
 
