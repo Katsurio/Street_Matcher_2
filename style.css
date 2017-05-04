@@ -14,9 +14,8 @@ body {
     position: relative;
 }
 .main-content {
-    width: 90%;
     height: 70%;
-    margin: auto;
+    position: relative;
 }
 div.stats-container {
     display: block;
@@ -43,6 +42,7 @@ div.stats-container {
 .button {
     right: 0;
     position: absolute;
+    z-index: 99;
 }
 div.stats-container div {
     display: inline-block;
@@ -90,11 +90,12 @@ h3.value {
 .card-container {
     width: 60%;
     height: 80%;
-    display: inline-block;
-    position: relative;
+    position: absolute;
     font-size: 0;
-    margin: 7% 21%;
     z-index: 2;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%);
 }
 
 .card-container .card {
@@ -241,3 +242,36 @@ footer {
      background: url("images/stages/dhalsim-background.jpg") no-repeat center top;
      background-size: 100% 100%;
  }
+
+/*** New Stats Side Display
+*******************************/
+/*.statsWrapper {*/
+    /*background-color: black;*/
+    /*!* height: 50%; *!*/
+    /*width: 30%;*/
+    /*position: absolute;*/
+    /*box-sizing: border-box;*/
+    /*!* text-align: left; *!*/
+    /*!* line-height: 0; *!*/
+    /*border: 5px solid black;*/
+    /*line-height: 0.5;*/
+/*}*/
+
+/*.statsWrapper p {*/
+    /*color: yellow;*/
+    /*display: inline-block;*/
+/*}*/
+
+/*.rounds, .attempts, .matches {*/
+    /*background-color: red;*/
+/*}*/
+
+/*.statsWrapper div p:nth-of-type(even) {*/
+    /*color: blue;*/
+    /*position: absolute;*/
+    /*right: 7%;*/
+/*}*/
+
+/*.statsWrapper div p:nth-of-type(odd) {*/
+    /*margin-left: 7%;*/
+/*}*/
