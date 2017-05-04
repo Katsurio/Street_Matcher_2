@@ -245,6 +245,7 @@ function applyClickHandlers()
     $('.card').click(cardClicked);
     $('.reset').click(function()
     {
+        console.warn("RESET CLICK");
         if (audioCheck) {
             gamesPlayed++;
             resetStats();
