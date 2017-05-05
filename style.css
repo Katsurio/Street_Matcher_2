@@ -258,16 +258,16 @@ footer {
 /*}*/
 
 /*.statsWrapper p {*/
-    /*color: yellow;*/
+    /*color: orange;*/
     /*display: inline-block;*/
 /*}*/
 
 /*.rounds, .attempts, .matches {*/
-    /*background-color: red;*/
+    /*background-color: purple;*/
 /*}*/
 
 /*.statsWrapper div p:nth-of-type(even) {*/
-    /*color: blue;*/
+    /*color: green;*/
     /*position: absolute;*/
     /*right: 7%;*/
 /*}*/
