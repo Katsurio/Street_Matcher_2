@@ -141,35 +141,35 @@ footer {
     position: absolute;
     margin: auto;
 }
-#ken {
+#fighter2 {
     right: 25%;
 }
-#ken, #ryu {
+#fighter2, #fighter1 {
     height: 100%;
 }
 
-#ken img, #ryu img {
+#fighter2 img, #fighter1 img {
     height: 60%;
     top: 30%;
     position: absolute;
 }
-#ryu {
+#fighter1 {
     left: 18%;
 }
 
 /* COMPARED TO THE ABOVE FEW LINES OF CODE*/
-/*#ken {*/
+/*#fighter2 {*/
     /*right: 15%;*/
 /*}*/
-/*#ken, #ryu {*/
+/*#fighter2, #fighter1 {*/
     /*top: 25%;*/
     /*height: 75%;*/
 /*}*/
 
-/*#ken img, #ryu img {*/
+/*#fighter2 img, #fighter1 img {*/
     /*height: 80%;*/
 /*}*/
-/*#ryu {*/
+/*#fighter1 {*/
     /*left: 18%;*/
 /*}*/
 
