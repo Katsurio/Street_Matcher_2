@@ -245,7 +245,7 @@ function applyClickHandlers()
 {
     // var ken = new Image("images/gifs/ken-fight-stance-small-fast.gif"); //TODO:This is likely NOT needed
     $('#fighter1').append($("<img>").attr('id', 'fighter1Img').addClass('fighter1Img').attr("src", "images/gifs/ryu-fight-stance-small-fast.gif" + " "));
-    $('#fighter2').append($("<img>").attr('id', 'fighter2Img').addClass('fighter2Img').attr("src", "images/gifs/ken-fight-stance-small-fast.gif" + " "));
+    $('#fighter2').append($("<img>").attr('id', 'fighter2Img').addClass('fighter2Img').attr("src", "images/gifs/ken-fight-stance-small-fast-NEW-copy.gif" + " "));
     // $("#fighter2Img").attr("src", "images/gifs/ken-fight-stance-small-fast.gif" + Math.random());
     stageTrack.play();
     fighterSpeak("announcer-round.wav", "announcer-" + gamesPlayed + ".wav", 800);
