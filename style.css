@@ -275,3 +275,10 @@ footer {
 /*.statsWrapper div p:nth-of-type(odd) {*/
     /*margin-left: 7%;*/
 /*}*/
+
+
+/*** Fighter Animations
+*******************************/
+.hidden {
+    display: none;
+}

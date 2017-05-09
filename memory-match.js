@@ -230,11 +230,22 @@ function announcerSpeak (speech1, speech2, callback)
 
 }
 
+function fighterAnimateGif (fighter1DoThisNowGif, fighter2DoThisNowGif, duration)
+{
+    var fighter1Gif = "images/gifs/" + fighter1DoThisNowGif + ".gif";
+    var fighter2Gif = "images/gifs/" + fighter2DoThisNowGif + ".gif";
+    $('#fighter1Img').attr("src", fighter1Gif);
+    // $('#fighter2Img').attr("src", fighter2Gif);
+    setTimeout(function() {
+        $('#fighter1Img').removeClass('hidden');
+    }, duration)
+}
+
 function applyClickHandlers()
 {
-    var ken = new Image("images/gifs/ken-fight-stance-small-fast.gif"); //TODO:This is likely NOT what I want
-    $('#fighter1').append($("<img>").attr('id', 'fighter1Img').attr("src", "images/gifs/ryu-fight-stance-small-fast.gif"));
-    $('#fighter2').append($("<img>").attr('id', 'fighter2Img').attr("src", "images/gifs/ken-fight-stance-small-slow.gif"));
+    // var ken = new Image("images/gifs/ken-fight-stance-small-fast.gif"); //TODO:This is likely NOT needed
+    $('#fighter1').append($("<img>").attr('id', 'fighter1Img').addClass('fighter1Img').attr("src", "images/gifs/ryu-fight-stance-small-fast.gif" + " "));
+    $('#fighter2').append($("<img>").attr('id', 'fighter2Img').addClass('fighter2Img').attr("src", "images/gifs/ken-fight-stance-small-fast.gif" + " "));
     // $("#fighter2Img").attr("src", "images/gifs/ken-fight-stance-small-fast.gif" + Math.random());
     stageTrack.play();
     fighterSpeak("announcer-round.wav", "announcer-" + gamesPlayed + ".wav", 800);
