@@ -11,7 +11,7 @@ var _1stCardClicked = null,
     gamesPlayed = 1,
     backOCard = "images/cards/NEW-streetfighter2_card_back.jpg",
     stageMusic = document.getElementById("stageAudio"),
-    stageTrack = new Audio('audio/stage-e-honda.mp3'),
+    stageTrack = new Audio('audio/stage-guile.mp3'),
     announcerYou = new Audio('audio/announcer-you.wav'),
     announcerWin = new Audio('audio/announcer-win.wav'),
     audioCheck = true,
@@ -164,7 +164,11 @@ function cardClicked()
             }
             else
             {
-            return false;
+                fighter1AnimateGif ("ryu-fight-sf2-hadouken", 1200, function()
+                {
+
+                });
+                fighterSpeak("fight-attack-hadouken.wav");
             }
         }
         else
@@ -230,23 +234,43 @@ function announcerSpeak (speech1, speech2, callback)
 
 }
 
-function fighterAnimateGif (fighter1DoThisNowGif, fighter2DoThisNowGif, duration)
+// THIS IS THE ORIGINAL FUNCTION BEFORE I CHANGED THINGS SO revert TO THIS IF PROBLEM OCCURS!!!
+// function fighterAnimateGif (fighter1DoThisNowGif, fighter2DoThisNowGif, duration)
+// {
+//     var fighter1Gif = "images/gifs/" + fighter1DoThisNowGif + ".gif";
+//     var fighter2Gif = "images/gifs/" + fighter2DoThisNowGif + ".gif";
+//     $('#fighter1Img').attr("src", fighter1Gif);
+//     // $('#fighter2Img').attr("src", fighter2Gif);
+//     setTimeout(function() {
+//         $('#fighter1Img').removeClass('hidden');
+//     }, duration)
+// }
+
+
+function fighter1AnimateGif (fighterDoThisNowGif, duration, callback)
 {
-    var fighter1Gif = "images/gifs/" + fighter1DoThisNowGif + ".gif";
-    var fighter2Gif = "images/gifs/" + fighter2DoThisNowGif + ".gif";
+    var saveOrignalSRC = $('#fighter1Img').attr("src");
+    var fighter1Gif = "images/gifs/" + fighterDoThisNowGif + ".gif";
     $('#fighter1Img').attr("src", fighter1Gif);
-    // $('#fighter2Img').attr("src", fighter2Gif);
     setTimeout(function() {
-        $('#fighter1Img').removeClass('hidden');
+        $('#fighter1Img').attr("src", saveOrignalSRC);
+    }, duration)
+}
+
+function fighter2AnimateGif (fighterDoThisNowGif, duration, callback)
+{
+    var saveOrignalSRC = $('#fighter2Img').attr("src");
+    var fighter2Gif = "images/gifs/" + fighterDoThisNowGif + ".gif";
+    $('#fighter2Img').attr("src", fighter2Gif);
+    setTimeout(function() {
+        $('#fighter2Img').attr("src", saveOrignalSRC);
     }, duration)
 }
 
 function applyClickHandlers()
 {
-    // var ken = new Image("images/gifs/ken-fight-stance-small-fast.gif"); //TODO:This is likely NOT needed
     $('#fighter1').append($("<img>").attr('id', 'fighter1Img').addClass('fighter1Img').attr("src", "images/gifs/ryu-fight-stance-small-fast.gif" + " "));
     $('#fighter2').append($("<img>").attr('id', 'fighter2Img').addClass('fighter2Img').attr("src", "images/gifs/ken-fight-stance-small-fast-NEW-copy.gif" + " "));
-    // $("#fighter2Img").attr("src", "images/gifs/ken-fight-stance-small-fast.gif" + Math.random());
     stageTrack.play();
     fighterSpeak("announcer-round.wav", "announcer-" + gamesPlayed + ".wav", 800);
 
