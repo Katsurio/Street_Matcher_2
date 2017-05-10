@@ -282,3 +282,8 @@ footer {
 .hidden {
     display: none;
 }
+
+#fighter1 .scaleGif {
+    transform: scale(2);
+    /*height: 100%;*/
+}

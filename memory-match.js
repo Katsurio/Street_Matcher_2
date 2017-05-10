@@ -3,7 +3,7 @@
  */
 var _1stCardClicked = null,
     _2ndCardClicked = null,
-    totalPossibleMatches = 9, //TODO: CHANGE THIS BACK TO: 9
+    totalPossibleMatches = 1, //TODO: CHANGE THIS BACK TO: 9
     matchCounter = 0,
     matches = 0,
     attempts = 0,
@@ -11,7 +11,7 @@ var _1stCardClicked = null,
     gamesPlayed = 1,
     backOCard = "images/cards/NEW-streetfighter2_card_back.jpg",
     stageMusic = document.getElementById("stageAudio"),
-    stageTrack = new Audio('audio/stage-guile.mp3'),
+    stageTrack = new Audio('audio/stage-blanka.mp3'),
     announcerYou = new Audio('audio/announcer-you.wav'),
     announcerWin = new Audio('audio/announcer-win.wav'),
     audioCheck = true,
@@ -52,7 +52,7 @@ function shuffleCards(cardBackImg, cardFaceImgs)
         i,
         newCardImgArr = cardFaceImgs.slice(0);
 
-    for (i = cardFaceImgs.length; i > 0; i--) //TODO: CHANGE THIS BACK TO: i = cardFaceImgs.length
+    for (i = 2; i > 0; i--) //TODO: CHANGE THIS BACK TO: i = cardFaceImgs.length
     {
         randomIndex = Math.floor(Math.random() * i);
         randomImg = newCardImgArr.splice(randomIndex, 1);
@@ -146,21 +146,27 @@ function cardClicked()
 
             if (matchCounter === totalPossibleMatches)
             {
-                if (audioCheck)
-                {
-                    stageTrack.pause();
-                    stageTrack.currentTime = 0;
-                    $('.main-content').append('<img class="winner" src="images/environment/you-win.png">');
-                    announcerSpeak("announcer-you.wav", "announcer-win.wav", function ()
+                fighter1AnimateGif ("ryu-fight-super-tornado-kick", 4000);
+                $('#fighter1 #fighter1Img').addClass("scaleGif");
+                setTimeout(function(){
+                    if (audioCheck)
                     {
-                        fighterSpeak("fight-voice-hahahaha-girl.wav", "fight-voice-victory-yatta.wav", 1200);
-                    })
-                }
-                else
-                {
-                    stageTrack.currentTime = 0;
-                    $('.main-content').append('<img class="winner" src="images/environment/you-win.png">');
-                }
+                        // $('#fighter1Img').removeClass("scaleGif");
+                        stageTrack.pause();
+                        stageTrack.currentTime = 0;
+                        $('.main-content').append('<img class="winner" src="images/environment/you-win.png">');
+                        announcerSpeak("announcer-you.wav", "announcer-win.wav", function ()
+                        {
+                            fighterSpeak("fight-voice-hahahaha-girl.wav", "fight-voice-victory-yatta.wav", 1200);
+                        })
+                    }
+                    else
+                    {
+                        $('#fighter1Img').removeClass("scaleGif");
+                        stageTrack.currentTime = 0;
+                        $('.main-content').append('<img class="winner" src="images/environment/you-win.png">');
+                    }
+                });
             }
             else
             {
