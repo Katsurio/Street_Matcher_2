@@ -3,7 +3,7 @@
  */
 var _1stCardClicked = null,
     _2ndCardClicked = null,
-    totalPossibleMatches = 1, //TODO: CHANGE THIS BACK TO: 9
+    totalPossibleMatches = 9, //TODO: CHANGE THIS BACK TO: 9
     matchCounter = 0,
     matches = 0,
     attempts = 0,
@@ -52,7 +52,7 @@ function shuffleCards(cardBackImg, cardFaceImgs)
         i,
         newCardImgArr = cardFaceImgs.slice(0);
 
-    for (i = 2; i > 0; i--) //TODO: CHANGE THIS BACK TO: i = cardFaceImgs.length
+    for (i = cardFaceImgs.length; i > 0; i--) //TODO: CHANGE THIS BACK TO: i = cardFaceImgs.length
     {
         randomIndex = Math.floor(Math.random() * i);
         randomImg = newCardImgArr.splice(randomIndex, 1);
@@ -190,7 +190,7 @@ function cardClicked()
                 $('.card').click(cardClicked);
             }
             displayStats();
-            setTimeout(_2CardsMismatchTimeout, 1000); //Original val=2000
+            setTimeout(_2CardsMismatchTimeout, 1000); // TODO: Original val=2000
         }
     }
     displayStats();
